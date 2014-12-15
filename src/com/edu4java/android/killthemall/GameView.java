@@ -3,7 +3,6 @@ package com.edu4java.android.killthemall;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,10 +21,13 @@ public class GameView extends SurfaceView {
 	private long lastClick;
 	private List<TempSprite> temps = new ArrayList<TempSprite>();;
 	private Bitmap bmpBlood;
+	private Paint paint;
 
 	public GameView(Context context) {
 		super(context);
 
+		paint = new Paint();
+		
 		gameLoopThread = new GameLoopThread(this);
 
 		holder = getHolder();
@@ -96,9 +98,9 @@ public class GameView extends SurfaceView {
 			ArrayList<Projectile> projectiles = sprite.getProjectiles();
 			for (int i = 0; i < projectiles.size(); i++) {
 				Projectile p = (Projectile) projectiles.get(i);
-				Paint paint = new Paint();
 				paint.setColor(Color.YELLOW);
-				canvas.drawRect(p.getX(), p.getY(), 10, 5, paint);
+				canvas.drawLine(p.getX(), p.getY(), p.getX() + 10,
+						p.getY() + 10, paint);
 			}
 		}
 

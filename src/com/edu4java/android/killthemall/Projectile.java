@@ -22,6 +22,7 @@ public class Projectile {
 		x += speedX;
 		r.set(x, y, x + 10, y + 5);
 		if (x > 800) {
+			visible = false;
 			r = null;
 		}
 	}

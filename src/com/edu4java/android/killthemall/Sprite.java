@@ -82,7 +82,7 @@ public class Sprite {
 	}
 
 	public void shoot() {
-		Projectile p = new Projectile(this.width + x - 5, this.height + y - 10);
+		Projectile p = new Projectile(this.width + x - 10, this.height + y - 10);
 		projectiles.add(p);
 	}
 
