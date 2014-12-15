@@ -2,11 +2,14 @@ package com.edu4java.android.killthemall;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -89,7 +92,16 @@ public class GameView extends SurfaceView {
 
 		for (Sprite sprite : sprites) {
 			sprite.draw(canvas);
+			// bullet fire
+			ArrayList<Projectile> projectiles = sprite.getProjectiles();
+			for (int i = 0; i < projectiles.size(); i++) {
+				Projectile p = (Projectile) projectiles.get(i);
+				Paint paint = new Paint();
+				paint.setColor(Color.YELLOW);
+				canvas.drawRect(p.getX(), p.getY(), 10, 5, paint);
+			}
 		}
+
 	}
 
 	@Override

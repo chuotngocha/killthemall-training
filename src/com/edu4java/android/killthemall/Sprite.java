@@ -3,6 +3,7 @@
  */
 package com.edu4java.android.killthemall;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import android.graphics.Bitmap;
@@ -28,6 +29,8 @@ public class Sprite {
 	private int height;
 	private static final int MAX_SPEED = 5;
 
+	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+
 	public Sprite(GameView gameView, Bitmap bmp) {
 		this.gameView = gameView;
 		this.bmp = bmp;
@@ -50,6 +53,7 @@ public class Sprite {
 		}
 		y = y + ySpeed;
 		currentFrame = ++currentFrame % BMP_COLUMNS;
+
 	}
 
 	public void draw(Canvas canvas) {
@@ -59,6 +63,8 @@ public class Sprite {
 		Rect src = new Rect(srcX, srcY, srcX + this.width, srcY + this.height);
 		Rect dst = new Rect(x, y, x + this.width, y + this.height);
 		canvas.drawBitmap(bmp, src, dst, null);
+		shoot();
+
 	}
 
 	// direction = 0 up, 1 left, 2 down, 3 right,
@@ -73,6 +79,15 @@ public class Sprite {
 
 	public boolean isCollition(float x2, float y2) {
 		return x2 > x && x2 < x + width && y2 > y && y2 < y + height;
+	}
+
+	public void shoot() {
+		Projectile p = new Projectile(this.width + x - 5, this.height + y - 10);
+		projectiles.add(p);
+	}
+
+	public ArrayList<Projectile> getProjectiles() {
+		return projectiles;
 	}
 
 }
