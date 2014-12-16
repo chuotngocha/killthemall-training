@@ -22,12 +22,15 @@ public class GameView extends SurfaceView {
 	private List<TempSprite> temps = new ArrayList<TempSprite>();;
 	private Bitmap bmpBlood;
 	private Paint paint;
+	private int x = 0;
+	private int y = 0;
+	private int xSpeed = 1;
 
 	public GameView(Context context) {
 		super(context);
 
 		paint = new Paint();
-		
+
 		gameLoopThread = new GameLoopThread(this);
 
 		holder = getHolder();
@@ -99,8 +102,17 @@ public class GameView extends SurfaceView {
 			for (int i = 0; i < projectiles.size(); i++) {
 				Projectile p = (Projectile) projectiles.get(i);
 				paint.setColor(Color.YELLOW);
-				canvas.drawLine(p.getX(), p.getY(), p.getX() + 10,
-						p.getY() + 10, paint);
+				// canvas.drawLine(p.getX(), p.getY(), p.getX() + 10,
+				// p.getY() + 10, paint);
+				if (x > getWidth()) {
+					xSpeed = -5;
+				}
+				if (x == 0) {
+					xSpeed = 5;
+				}
+				x = x + xSpeed;
+				canvas.drawRect(p.getX() + x, p.getY(), p.getX() + x + 20,
+						p.getY() + 5, paint);
 			}
 		}
 
