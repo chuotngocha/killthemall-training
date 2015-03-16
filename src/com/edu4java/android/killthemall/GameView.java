@@ -64,7 +64,7 @@ public class GameView extends SurfaceView {
 			}
 		});
 		bmpBlood = BitmapFactory.decodeResource(getResources(),
-				R.drawable.blood1);
+				R.drawable.rsz_image_skill_1_red_1);
 	}
 
 	private void createSprites() {
@@ -89,7 +89,7 @@ public class GameView extends SurfaceView {
 
 	@Override
 	public void draw(Canvas canvas) {
-		canvas.drawColor(Color.BLACK);
+		canvas.drawColor(Color.WHITE);
 
 		for (int i = temps.size() - 1; i >= 0; i--) {
 			temps.get(i).draw(canvas);
@@ -99,8 +99,9 @@ public class GameView extends SurfaceView {
 			sprite.draw(canvas);
 			// bullet fire
 			ArrayList<Projectile> projectiles = sprite.getProjectiles();
+
 			for (int i = 0; i < projectiles.size(); i++) {
-				Projectile p = (Projectile) projectiles.get(i);
+				// Projectile p = (Projectile) projectiles.get(i);
 				paint.setColor(Color.YELLOW);
 				// canvas.drawLine(p.getX(), p.getY(), p.getX() + 10,
 				// p.getY() + 10, paint);
@@ -111,8 +112,8 @@ public class GameView extends SurfaceView {
 					xSpeed = 5;
 				}
 				x = x + xSpeed;
-				canvas.drawRect(p.getX() + x, p.getY(), p.getX() + x + 20,
-						p.getY() + 5, paint);
+				// canvas.drawRect(p.getX() + x, p.getY(), p.getX() + x + 20,
+				// p.getY() + 5, paint);
 			}
 		}
 
